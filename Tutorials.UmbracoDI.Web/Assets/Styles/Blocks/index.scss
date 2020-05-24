@@ -1,0 +1,12 @@
+.block {
+    padding: 5px;
+    background-color: $background-color;
+    border: $default-border;
+    color: $text-color;
+
+    &.alternate {
+        background-color: $secondary-background-color;
+        border: $default-alternate-border;
+        color: $secondary-text-color;
+    }
+}

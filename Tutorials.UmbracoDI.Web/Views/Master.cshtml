@@ -1,0 +1,31 @@
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = null;
+    /*#Start Setup Code#*/
+    /*#End Setup Code#*/
+}
+<!DOCTYPE html>
+<html>
+<head>
+    @*#Start Head#*@
+    <meta charset="UTF-8">
+    @*#Start Meta Tags#*@
+    <title>@Model.Name</title>
+    @*#End Meta Tags#*@
+    @*#Start Head rel links#*@
+    <link href="~/Assets/Dist/UmbracoDI.css" rel="stylesheet" />
+    @*#End Head rel links#*@
+    @*#End Head#*@
+</head>
+<body>
+    @*#Start Body#*@
+    <main class="@Model.ContentType.Alias">
+        @*#Start Main#*@
+
+        @RenderBody()
+        @*#End Main#*@
+    </main>
+    @*#End Body#*@
+</body>
+</html>

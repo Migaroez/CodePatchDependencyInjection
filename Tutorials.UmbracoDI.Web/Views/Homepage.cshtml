@@ -1,0 +1,16 @@
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Homepage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+    if (Model.Blocks?.Any() != true)
+    {
+        return;
+    }
+    var blocks = Model.Blocks.ToList();
+}
+@for (int i = 0; i < blocks.Count; i++)
+{
+    <div class="block @(i%2 == 1 ? "alternate" : null)">
+        @Html.Partial("Blocks/" + blocks[i].ContentType.Alias.Replace("block_", ""), blocks[i])
+    </div>
+}
