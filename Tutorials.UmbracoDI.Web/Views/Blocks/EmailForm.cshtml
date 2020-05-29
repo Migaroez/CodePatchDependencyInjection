@@ -1,0 +1,7 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Block_EmailForm>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    // https://our.umbraco.com/documentation/reference/templating/mvc/forms/tutorial-child-action
+}
+
+@Html.Action("RenderForm", "EmailFormSurface")

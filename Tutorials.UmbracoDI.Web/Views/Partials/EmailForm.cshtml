@@ -1,0 +1,12 @@
+﻿@using Tutorials.UmbracoDI.Core.Controllers
+@model Tutorials.UmbracoDI.Models.EmailFormModel
+
+@using (Html.BeginUmbracoForm<EmailFormSurfaceController>("SubmitForm"))
+{
+    @Html.EditorFor(x => Model)
+    <input type="submit" />
+}
+@if (TempData["EmailForm"]?.ToString()?.IsNullOrWhiteSpace() == false)
+{
+    <p>@TempData["EmailForm"]</p>
+}
