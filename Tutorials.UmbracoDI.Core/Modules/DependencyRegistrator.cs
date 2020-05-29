@@ -16,7 +16,9 @@ namespace Tutorials.UmbracoDI.Core.Modules
     {
         public void Compose(Composition composition)
         {
-            composition.Register<ICommunicationService, CommunicationService>(Lifetime.Request);
+            composition.Register<IConfigurationSupplier,ConfigurationSupplier>(Lifetime.Singleton);
+            composition.Register<ITextDazzler, TextDazzler>(Lifetime.Singleton);
+            composition.Register<ICommunicationService, CodePatchCommunicationService>(Lifetime.Request);
         }
     }
 }
