@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Security;
+using Tutorials.UmbracoDI.Core.Services;
 using Tutorials.UmbracoDI.Models;
 using Umbraco.Web.Mvc;
 
@@ -14,6 +9,13 @@ namespace Tutorials.UmbracoDI.Core.Controllers
 {
     public class EmailFormSurfaceController : SurfaceController
     {
+        private readonly ICommunicationService _communicationService;
+
+        public EmailFormSurfaceController(ICommunicationService communicationService)
+        {
+            _communicationService = communicationService;
+        }
+
         // Important to attribute your child action with ChildActionOnly
         // otherwise the action will become publicly routable (i.e. have
         // a publicly available Url)
@@ -38,18 +40,7 @@ namespace Tutorials.UmbracoDI.Core.Controllers
                 return CurrentUmbracoPage();
             }
 
-
-            var message = new MailMessage();
-            message.To.Add(new MailAddress("info@umbrace.be"));  // replace with valid value 
-            message.From = new MailAddress(model.Email);  // replace with valid value
-            message.Subject = model.Name + " send you a message";
-            message.Body = model.Comment;
-            message.IsBodyHtml = false;
-
-            using (var smtp = new SmtpClient())
-            {
-                await smtp.SendMailAsync(message);
-            }
+            await _communicationService.SendCommentToHost(model.Name, model.Email, model.Comment);
 
             // Add a message in TempData which will be available
             // in the View after the redirect
